@@ -10,7 +10,6 @@ class ReceivedChatBubble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         padding: const EdgeInsets.only(bottom: 24, right: 24, top: 24, left: 16),
         decoration: const BoxDecoration(

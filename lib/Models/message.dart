@@ -1,9 +1,5 @@
 class Message {
-
-  Message({
-    this.message,
-    this.id
-  });
+  Message({this.message, this.id});
 
   Message.fromJson(dynamic json) {
     message = json['message'];
@@ -19,5 +15,4 @@ class Message {
     map['id'] = id;
     return map;
   }
-
 }
