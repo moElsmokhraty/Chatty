@@ -1,15 +1,27 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:meta/meta.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
-  Future<void> logInFireBaseAuth(
-      {required String email, required String password}) async {
+  final formKey = GlobalKey<FormState>();
+
+  bool obscure = true;
+
+  Icon icon = const Icon(Icons.visibility_outlined);
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> logInFireBaseAuth({
+    required String email,
+    required String password,
+  }) async {
     emit(LoginLoading());
     if (await InternetConnectionChecker().hasConnection) {
       try {
@@ -33,8 +45,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   String? validateEmail(String value) {
-    RegExp regex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    RegExp regex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (value.isEmpty || value.trim().isEmpty) {
       return 'Please enter email';
     } else {
@@ -57,5 +68,15 @@ class LoginCubit extends Cubit<LoginState> {
         return null;
       }
     }
+  }
+
+  void changeObscure() {
+    obscure = !obscure;
+    if (obscure) {
+      icon = const Icon(Icons.visibility_outlined);
+    } else {
+      icon = const Icon(Icons.visibility_off_outlined);
+    }
+    emit(ChangeObscure());
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SentChatBubble extends StatelessWidget {
-  SentChatBubble({this.message, Key? key}) : super(key: key);
+  const SentChatBubble({this.message, Key? key}) : super(key: key);
 
-  String? message;
+  final String? message;
 
   @override
   Widget build(BuildContext context) {

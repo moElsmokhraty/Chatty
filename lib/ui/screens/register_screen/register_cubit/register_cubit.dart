@@ -1,14 +1,33 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:meta/meta.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
 
-  void registerToFireBaseAuth({required String? email, required String? password}) async {
+  final formKey = GlobalKey<FormState>();
+
+  bool obscure = true;
+
+  bool confirmObsecure = true;
+
+  Icon icon = const Icon(Icons.visibility_outlined);
+
+  Icon confirmIcon = const Icon(Icons.visibility_outlined);
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  void registerToFireBaseAuth({
+    required String? email,
+    required String? password,
+  }) async {
     emit(RegisterLoading());
     if (await InternetConnectionChecker().hasConnection) {
       try {
@@ -54,5 +73,25 @@ class RegisterCubit extends Cubit<RegisterState> {
         return null;
       }
     }
+  }
+
+  void changeObsecure(){
+    obscure = !obscure;
+    if (obscure) {
+      icon = const Icon(Icons.visibility_outlined);
+    } else {
+      icon = const Icon(Icons.visibility_off_outlined);
+    }
+    emit(ChangeObsecure());
+  }
+
+  void changeConfirmObsecure(){
+    confirmObsecure = !confirmObsecure;
+    if (obscure) {
+      confirmIcon = const Icon(Icons.visibility_outlined);
+    } else {
+      confirmIcon = const Icon(Icons.visibility_off_outlined);
+    }
+    emit(ChangeConfirmObsecure());
   }
 }

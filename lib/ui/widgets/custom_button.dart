@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({this.text,this.function,Key? key}) : super(key: key);
+  const CustomButton({this.text,this.function,Key? key}) : super(key: key);
 
-   late String? text;
+   final String? text;
 
-   late VoidCallback? function;
+   final VoidCallback? function;
 
   @override
   Widget build(BuildContext context) {

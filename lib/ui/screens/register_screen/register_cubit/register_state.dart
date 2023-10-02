@@ -10,7 +10,11 @@ class RegisterLoading extends RegisterState {}
 class RegisterSuccess extends RegisterState {}
 
 class RegisterFailure extends RegisterState {
-  String? errMessage;
+  final String? errMessage;
 
   RegisterFailure({required this.errMessage});
 }
+
+class ChangeObsecure extends RegisterState {}
+
+class ChangeConfirmObsecure extends RegisterState {}

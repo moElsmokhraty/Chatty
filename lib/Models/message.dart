@@ -1,13 +1,16 @@
 class Message {
-  Message({this.message, this.id});
+  String? message;
+  String? id;
+
+  Message({
+    this.message,
+    this.id,
+  });
 
   Message.fromJson(dynamic json) {
-    message = json['message'];
-    id = json['id'];
+    message = json['message'] as String?;
+    id = json['id'] as String?;
   }
-  String? message;
-
-  String? id;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

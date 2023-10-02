@@ -1,20 +1,29 @@
-import 'package:chat/ui/screens/chat_screen/chat_cubit/chat_cubit.dart';
-import 'package:chat/ui/screens/chat_screen/chat_screen.dart';
-import 'package:chat/ui/screens/login_screen/login_cubit/login_cubit.dart';
-import 'package:chat/ui/screens/login_screen/login_screen.dart';
-import 'package:chat/ui/screens/register_screen/register_cubit/register_cubit.dart';
-import 'package:chat/ui/screens/register_screen/register_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'BlocObserver.dart';
-import 'firebase_options.dart';
+import 'package:chat/cache_helper.dart';
+import 'package:chat/constants.dart';
 
-void main() async{
+import 'bloc_observer.dart';
+import 'firebase_options.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:chat/ui/screens/chat_screen/chat_screen.dart';
+import 'package:chat/ui/screens/login_screen/login_screen.dart';
+import 'package:chat/ui/screens/register_screen/register_screen.dart';
+import 'package:chat/ui/screens/chat_screen/chat_cubit/chat_cubit.dart';
+import 'package:chat/ui/screens/login_screen/login_cubit/login_cubit.dart';
+import 'package:chat/ui/screens/register_screen/register_cubit/register_cubit.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await CacheHelper.init();
+  email = CacheHelper.getData(key: 'email');
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
   );
   Bloc.observer = MyBlocObserver();
   runApp(const ChatApp());
@@ -23,23 +32,22 @@ void main() async{
 class ChatApp extends StatelessWidget {
   const ChatApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=> LoginCubit()),
-        BlocProvider(create: (context)=> RegisterCubit()),
-        BlocProvider(create: (context)=> ChatCubit()),
+        BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => ChatCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
-        initialRoute: LoginScreen.routeName,
+        home: email == null ? const LoginScreen() : const ChatScreen(),
+        initialRoute: email == null ? LoginScreen.routeName : ChatScreen.routeName,
         routes: {
-          LoginScreen.routeName: (_)=> LoginScreen(),
-          RegisterScreen.routeName: (_)=> RegisterScreen(),
-          ChatScreen.routeName: (_)=> ChatScreen()
+          LoginScreen.routeName: (_) => const LoginScreen(),
+          RegisterScreen.routeName: (_) => const RegisterScreen(),
+          ChatScreen.routeName: (_) => const ChatScreen()
         },
       ),
     );
