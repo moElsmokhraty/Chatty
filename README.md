@@ -7,7 +7,7 @@ Chatty is a simple chat app that uses Firebase as a backend and provides a simpl
 |                                                                                                                      |                                                                                                                    |
 |:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
 |  <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/splash.png" width="900"/>  | <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/login.png" width= "900"/> |
-| <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/register.png" width="600"/> | <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/chat.png" width="1200"/>  |
+| <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/register.png" width="900"/> | <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/chat.png" width="900"/>  |
 
 ## Used Technologies
 
