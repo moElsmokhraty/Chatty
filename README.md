@@ -1,16 +1,22 @@
-# chat
+Chatty
+=============================
+Chatty is a simple chat app that uses Firebase as a backend and provides a simple UI for chatting with friends.
 
-A new Flutter project.
+## Screenshots
 
-## Getting Started
+|                                                                                                                      |                                                                                                                    |
+|:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
+|  <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/splash.png" width="900"/>  | <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/login.png" width= "900"/> |
+| <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/register.png" width="900"/> |  <img alt="Chatty" src="https://github.com/moElsmokhraty/chat_app/blob/master/screenshots/chat.png" width="900"/>  |
 
-This project is a starting point for a Flutter application.
+## Used Technologies
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+- Cubit
+- Firebase Auth
+- Firestore Database
+- Shared Preferences
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Cloning Repo
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`git clone git@github.com:moElsmokhraty/Chatty.git`
