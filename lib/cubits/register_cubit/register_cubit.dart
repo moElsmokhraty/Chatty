@@ -14,9 +14,15 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   bool confirmObsecure = true;
 
-  Icon icon = const Icon(Icons.visibility_outlined);
+  Icon icon = const Icon(
+    Icons.visibility_outlined,
+    color: Colors.white,
+  );
 
-  Icon confirmIcon = const Icon(Icons.visibility_outlined);
+  Icon confirmIcon = const Icon(
+    Icons.visibility_outlined,
+    color: Colors.white,
+  );
 
   TextEditingController emailController = TextEditingController();
 
@@ -75,22 +81,34 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  void changeObsecure(){
+  void changeObsecure() {
     obscure = !obscure;
     if (obscure) {
-      icon = const Icon(Icons.visibility_outlined);
+      icon = const Icon(
+        Icons.visibility_outlined,
+        color: Colors.white,
+      );
     } else {
-      icon = const Icon(Icons.visibility_off_outlined);
+      icon = const Icon(
+        Icons.visibility_off_outlined,
+        color: Colors.white,
+      );
     }
     emit(ChangeObsecure());
   }
 
-  void changeConfirmObsecure(){
+  void changeConfirmObsecure() {
     confirmObsecure = !confirmObsecure;
     if (obscure) {
-      confirmIcon = const Icon(Icons.visibility_outlined);
+      confirmIcon = const Icon(
+        Icons.visibility_outlined,
+        color: Colors.white,
+      );
     } else {
-      confirmIcon = const Icon(Icons.visibility_off_outlined);
+      confirmIcon = const Icon(
+        Icons.visibility_off_outlined,
+        color: Colors.white,
+      );
     }
     emit(ChangeConfirmObsecure());
   }

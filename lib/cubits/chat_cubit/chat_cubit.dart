@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:chat/Models/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +15,8 @@ class ChatCubit extends Cubit<ChatState> {
 
   TextEditingController messageController = TextEditingController();
 
-  CollectionReference messagesRef = FirebaseFirestore.instance.collection('messages');
+  CollectionReference messagesRef =
+      FirebaseFirestore.instance.collection('messages');
 
   void sendMessage({required String? message, required String? email}) {
     messagesRef.add({
@@ -33,7 +35,13 @@ class ChatCubit extends Cubit<ChatState> {
       for (var doc in event.docs) {
         messagesList.add(Message.fromJson(doc));
       }
-      emit(ChatSuccess(messages: messagesList));
+      emit(ChatSuccess(messagesList));
     });
+  }
+
+  Future<void> setupPushNotifications() async {
+    final fcm = FirebaseMessaging.instance;
+    await fcm.requestPermission();
+    await fcm.subscribeToTopic('chat');
   }
 }

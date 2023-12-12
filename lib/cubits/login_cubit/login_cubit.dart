@@ -12,7 +12,10 @@ class LoginCubit extends Cubit<LoginState> {
 
   bool obscure = true;
 
-  Icon icon = const Icon(Icons.visibility_outlined);
+  Icon icon = const Icon(
+    Icons.visibility_outlined,
+    color: Colors.white,
+  );
 
   TextEditingController emailController = TextEditingController();
 
@@ -45,7 +48,8 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   String? validateEmail(String value) {
-    RegExp regex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    RegExp regex = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (value.isEmpty || value.trim().isEmpty) {
       return 'Please enter email';
     } else {
@@ -73,9 +77,15 @@ class LoginCubit extends Cubit<LoginState> {
   void changeObscure() {
     obscure = !obscure;
     if (obscure) {
-      icon = const Icon(Icons.visibility_outlined);
+      icon = const Icon(
+        Icons.visibility_outlined,
+        color: Colors.white,
+      );
     } else {
-      icon = const Icon(Icons.visibility_off_outlined);
+      icon = const Icon(
+        Icons.visibility_off_outlined,
+        color: Colors.white,
+      );
     }
     emit(ChangeObscure());
   }

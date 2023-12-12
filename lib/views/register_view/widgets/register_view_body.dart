@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:chat/ui/widgets/snack_bar.dart';
-import 'package:chat/ui/widgets/custom_button.dart';
-import 'package:chat/ui/widgets/custom_text_form_field.dart';
-import 'package:chat/ui/screens/login_screen/login_screen.dart';
-import 'package:chat/ui/screens/register_screen/register_cubit/register_cubit.dart';
+import '../../../widgets/snack_bar.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_text_form_field.dart';
+import 'package:chat/views/login_view/login_view.dart';
+import '../../../cubits/register_cubit/register_cubit.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
-
-  static String routeName = 'register';
+class RegisterViewBody extends StatelessWidget {
+  const RegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +17,13 @@ class RegisterScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterSuccess) {
           showSnackBar(context, 'Account Created Successfully');
-          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+          Navigator.pushReplacementNamed(context, LoginView.routeName);
         } else if (state is RegisterFailure) {
           showSnackBar(context, state.errMessage!);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: const Color(0xff2B475E),
-          body: SingleChildScrollView(
+        return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Form(
               key: registerCubit.formKey,
@@ -147,8 +143,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, LoginScreen.routeName);
+                            Navigator.pushReplacementNamed(context, LoginView.routeName);
                           },
                           child: const Text(
                             'Login!',
@@ -161,7 +156,6 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
         );
       },
     );
